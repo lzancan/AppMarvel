@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MarvelApp</string>
+    <string name="comics_participations">Participações em comics</string>
 </resources>

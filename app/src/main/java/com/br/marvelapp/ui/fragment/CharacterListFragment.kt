@@ -1,4 +1,4 @@
-package com.br.marvelapp.ui.main
+package com.br.marvelapp.ui.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,16 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.br.marvelapp.databinding.MainFragmentBinding
-import com.br.marvelapp.ui.adapter.RecyclerAdapter
+import com.br.marvelapp.ui.activity.MainActivity
+import com.br.marvelapp.databinding.CharacterListFragmentBinding
+import com.br.marvelapp.ui.adapter.CharacterRecyclerAdapter
+import com.br.marvelapp.viewmodel.MainViewModel
 
-class MainFragment : Fragment() {
+class CharacterListFragment : Fragment() {
 
     private lateinit var viewModel: MainViewModel
 
     companion object {
-        fun newInstance(viewModel: MainViewModel): MainFragment {
-            val fragment = MainFragment()
+        fun newInstance(viewModel: MainViewModel): CharacterListFragment {
+            val fragment = CharacterListFragment()
             fragment.viewModel = viewModel
             return fragment
         }
@@ -25,9 +27,9 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding : MainFragmentBinding = MainFragmentBinding.inflate(inflater, container, false)
+        val binding : CharacterListFragmentBinding = CharacterListFragmentBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
-        binding.recyclerViewCharacters.adapter = RecyclerAdapter(context!!, ArrayList())
+        binding.recyclerViewCharacters.adapter = CharacterRecyclerAdapter(activity as MainActivity, ArrayList())
         binding.recyclerViewCharacters.layoutManager = LinearLayoutManager(activity)
         return binding.root
     }

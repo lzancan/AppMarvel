@@ -1,43 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="character"
-            type="com.br.marvelapp.model.CharacterModel" />
-        <variable
-            name="itemClickListener"
-            type="com.br.marvelapp.CharacterEventListener"/>
+            name="comic"
+            type="com.br.marvelapp.model.ComicItemModel" />
 
         <import type="android.view.View" />
     </data>
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/backgroundLayout"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="15dp"
-        android:onClick="@{(view) -> itemClickListener.clickCharacter(character)}">
-        <ImageView
-            android:id="@+id/itemBackground"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            loadGlideImage="@{character.thumbnail.url}"/>
+        android:padding="15dp">
         <TextView
             android:id="@+id/characterName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center|bottom"
             android:textSize="20sp"
-            android:background="@color/black"
+            android:textStyle="bold"
+            android:background="@color/colorPrimaryDark"
             android:alpha="0.5"
             android:textColor="@color/white"
             tools:text="O miranha"
-            android:text="@{character.name}"
+            android:text="@{comic.name}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
