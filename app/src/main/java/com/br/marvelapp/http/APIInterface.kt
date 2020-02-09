@@ -8,7 +8,9 @@ import retrofit2.http.Query
 
 interface APIInterface {
     @GET("characters?")
-    fun listAllCharacters(@Query("ts") ts: String,
+    fun listAllCharacters(@Query("limit") limit: String,
+                          @Query("offset") offset: String,
+                          @Query("ts") ts: String,
                           @Query("apikey") apiKey: String,
                           @Query("hash") hash: String): Call<APIModel>
 }

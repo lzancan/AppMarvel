@@ -25,7 +25,7 @@ object RetrofitCallObject {
         viewModel.loadingVisibility.set(true)
         val ts = Calendar.getInstance().timeInMillis
         val hash = CryptoKeyUtils.md5("$ts${CryptoKeyUtils.privateKey}${CryptoKeyUtils.publicKey}")
-        service.listAllCharacters(ts.toString(), CryptoKeyUtils.publicKey, hash).enqueue(object: Callback<APIModel> {
+        doApiCall(ts.toString(), hash, viewModel).enqueue(object: Callback<APIModel> {
             override fun onFailure(call: Call<APIModel>, t: Throwable) {
                 Log.e("Failure", t.toString())
                 viewModel.message.set(t.message)
@@ -35,7 +35,6 @@ object RetrofitCallObject {
             override fun onResponse(call: Call<APIModel>, response: Response<APIModel>) {
                 Log.d("Response", response.code().toString())
                 if (response.body() != null) {
-                    viewModel.characterList.clear()
                     viewModel.characterList.addAll(response.body()!!.data.results)
                     viewModel.loadingVisibility.set(false)
                 } else{
@@ -43,5 +42,9 @@ object RetrofitCallObject {
                 }
             }
         })
+    }
+
+    fun doApiCall(ts: String, hash: String, viewModel: MainViewModel): Call<APIModel> {
+        return service.listAllCharacters("20", viewModel.characterList.size.toString(), ts, CryptoKeyUtils.publicKey, hash)
     }
 }

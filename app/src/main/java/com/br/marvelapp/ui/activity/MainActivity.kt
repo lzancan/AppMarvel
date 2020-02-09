@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
+        RetrofitCallObject.loadMarvelCharacters(viewModel)
         hideBackButton()
     }
 
@@ -39,7 +40,6 @@ class MainActivity : AppCompatActivity() {
                 .replace(R.id.container, createFragment())
                 .commitNow()
         }
-        RetrofitCallObject.loadMarvelCharacters(viewModel)
     }
 
     private fun createFragment(): CharacterListFragment {
