@@ -28,7 +28,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        RetrofitCallObject.loadMarvelCharacters(viewModel)
         hideBackButton()
     }
 
